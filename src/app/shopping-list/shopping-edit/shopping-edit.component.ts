@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 import { Ingredient } from '../../shared/ingredient.model';
 
@@ -9,18 +9,24 @@ import { Ingredient } from '../../shared/ingredient.model';
 })
 export class ShoppingEditComponent implements OnInit {
   @Output() addItem = new EventEmitter<Ingredient>();
-  shoppingItem = {
-    name: '',
-    amount: 0
-  };
+  @Output() deleteSelectedItem = new EventEmitter<Ingredient>();
+  @Input() selectedShoppingItem: Ingredient;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  submitForm() {
-    this.addItem.emit(this.shoppingItem);
+  submitForm(name: string, amount: number) {
+    this.addItem.emit({
+      name: name,
+      amount: amount
+    });
+  }
+
+  deleteShoppingItem() {
+    this.selectedShoppingItem = null;
+    this.deleteSelectedItem.emit(this.selectedShoppingItem);
   }
 
 }

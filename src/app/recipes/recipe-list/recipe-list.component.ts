@@ -8,6 +8,8 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
+  @Output() selectedRecipe = new EventEmitter<Recipe>();
+
   recipes: Recipe[] = [
     new Recipe('A Test Recipe', 'This is simply the test', 'https://upload.wikimedia.org/wikipedia/commons/1/14/Eggless-jaggery-shortbread-recipe.jpg'),
     new Recipe('Another Test Recipe', 'This is another recipe', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Cooking-Baking-Dish-Salad-Healthy-Eating-Recipe-832811.jpg')
@@ -16,6 +18,10 @@ export class RecipeListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  selectRecipeItem(recipeItem: Recipe) {
+    this.selectedRecipe.emit(recipeItem);
   }
 
 }

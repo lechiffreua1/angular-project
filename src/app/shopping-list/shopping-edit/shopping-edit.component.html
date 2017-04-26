@@ -1,20 +1,31 @@
 <div class="row">
   <div class="col-xs-12">
-    <form (submit)="submitForm()" name="shoppingItemForm">
+    <form (submit)="submitForm(nameInput.value, amountInput.value)" name="shoppingItemForm">
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="name">Name</label>
-          <input type="text" id="name" name="name" class="form-control" [(ngModel)]="shoppingItem.name">
+          <input type="text"
+                 id="name"
+                 name="name"
+                 class="form-control"
+                 #nameInput
+                 autocomplete="off">
         </div>
         <div class="col-sm-2 form-group">
           <label for="amount">Amount</label>
-          <input type="text" id="amount" name="amount" class="form-control" [(ngModel)]="shoppingItem.amount">
+          <input type="number"
+                 id="amount"
+                 name="amount"
+                 class="form-control"
+                 #amountInput
+                 autocomplete="off">
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <button class="btn btn-success" type="submit">Add</button>
-          <button class="btn btn-danger" type="button">Delete</button>
+          {{amountInput.value}} {{nameInput.value}}
+          <button class="btn btn-danger" type="button" (click)="deleteShoppingItem()" [disabled]="!selectedShoppingItem">Delete</button>
           <button class="btn btn-primary" type="reset">Clear</button>
         </div>
       </div>
