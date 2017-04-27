@@ -1,12 +1,27 @@
+<!--<div class="row">-->
+  <!--<div class="col-md-5">-->
+    <!--<app-recipe-list (selectedRecipe)="showDetailRecipe($event)"></app-recipe-list>-->
+  <!--</div>-->
+  <!--<div class="col-md-7">-->
+    <!--<app-recipe-detail *ngIf="selected; else default"-->
+                       <!--[recipeItem]="selected"></app-recipe-detail>-->
+    <!--<ng-template #default>-->
+      <!--<p>Please, select Recipe</p>-->
+    <!--</ng-template>-->
+  <!--</div>-->
+<!--</div>-->
+
 <div class="row">
-  <div class="col-md-5">
-    <app-recipe-list (selectedRecipe)="showDetailRecipe($event)"></app-recipe-list>
+  <div class="col-xs-12">
+    <h2>Active Users</h2>
+    <app-active-users *ngFor="let activeUser of activeUsers" [activeUser]="activeUser"></app-active-users>
   </div>
-  <div class="col-md-7">
-    <app-recipe-detail *ngIf="selected; else default"
-                       [recipeItem]="selected"></app-recipe-detail>
-    <ng-template #default>
-      <p>Please, select Recipe</p>
-    </ng-template>
+  {{countActive}}
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Inactive Users</h2>
+    <app-inactive-users *ngFor="let inactiveUser of inactiveUsers" [inactiveUser]="inactiveUser"></app-inactive-users>
   </div>
+  {{countInactive}}
 </div>
