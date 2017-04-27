@@ -12,8 +12,6 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { ActiveUsersComponent } from './recipes/active-users/active-users.component';
-import { InactiveUsersComponent } from './recipes/inactive-users/inactive-users.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +23,7 @@ import { InactiveUsersComponent } from './recipes/inactive-users/inactive-users.
     RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    DropdownDirective,
-    ActiveUsersComponent,
-    InactiveUsersComponent
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
