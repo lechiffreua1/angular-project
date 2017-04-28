@@ -8,15 +8,10 @@ import { Recipe } from './recipe.model';
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
-  selected: Recipe;
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  showDetailRecipe(recipe: Recipe) {
-    this.selected = recipe;
   }
 
 }
