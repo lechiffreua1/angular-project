@@ -4,6 +4,8 @@ import { Recipe } from '../recipes/recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 
 export class RecipeService {
+  selectedRecipe = new EventEmitter<Recipe>();
+
   private recipes: Recipe[] = [
     new Recipe('A Test Recipe', 'This is simply the test',
               'https://upload.wikimedia.org/wikipedia/commons/1/14/Eggless-jaggery-shortbread-recipe.jpg',
@@ -16,13 +18,7 @@ export class RecipeService {
               )
   ];
 
-  selectedRecipe = new EventEmitter<Recipe>();
-
   getRecipes() {
     return this.recipes.slice();
-  }
-
-  selectRecipe(recipe: Recipe) {
-    this.selectedRecipe.emit(recipe);
   }
 }

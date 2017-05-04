@@ -1,12 +1,12 @@
-<div *ngIf="recipeItem; else default">
+<div *ngIf="selectedRecipe; else default">
   <div class="row">
     <div class="col-xs-12">
-      <img [src]="recipeItem.image" alt="{{ recipeItem.name }}" class="img-responsive" style="max-height: 250px">
+      <img [src]="selectedRecipe.image" alt="{{ selectedRecipe.name }}" class="img-responsive" style="max-height: 250px">
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <h1>{{recipeItem.name}}</h1>
+      <h1>{{selectedRecipe.name}}</h1>
     </div>
   </div>
   <div class="row">
@@ -18,7 +18,7 @@
           Manage Recipe <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-          <li (click)="toShoppingList(recipeItem.ingredients)"><a href="#">To Shopping List</a></li>
+          <li (click)="toShoppingList(selectedRecipe.ingredients)"><a href="#">To Shopping List</a></li>
           <li><a href="#">Edit Recipe</a></li>
           <li><a href="#">Delete Recipe</a></li>
         </ul>
@@ -27,13 +27,13 @@
   </div>
   <div class="row">
     <div class="col-xs-12">
-      {{recipeItem.desc}}
+      {{selectedRecipe.desc}}
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let ingredient of recipeItem.ingredients">
+        <li class="list-group-item" *ngFor="let ingredient of selectedRecipe.ingredients">
           {{ingredient.name}} ({{ingredient.amount}})
         </li>
       </ul>
