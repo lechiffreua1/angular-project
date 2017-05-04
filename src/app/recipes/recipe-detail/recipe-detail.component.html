@@ -1,35 +1,46 @@
-<div class="row">
-  <div class="col-xs-12">
-    <img [src]="recipeItem.image" alt="{{ recipeItem.name }}" class="img-responsive" style="max-height: 250px">
+<div *ngIf="recipeItem; else default">
+  <div class="row">
+    <div class="col-xs-12">
+      <img [src]="recipeItem.image" alt="{{ recipeItem.name }}" class="img-responsive" style="max-height: 250px">
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <h1>{{recipeItem.name}}</h1>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>{{recipeItem.name}}</h1>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <div class="btn-group" appDropdown>
-      <button type="button"
-              class="btn btn-primary dropdown-toggle">
-        Manage Recipe <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a href="#">To Shopping List</a></li>
-        <li><a href="#">Edit Recipe</a></li>
-        <li><a href="#">Delete Recipe</a></li>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="btn-group">
+        <button type="button"
+                data-toggle="dropdown"
+                class="btn btn-primary dropdown-toggle">
+          Manage Recipe <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li (click)="toShoppingList(recipeItem.ingredients)"><a href="#">To Shopping List</a></li>
+          <li><a href="#">Edit Recipe</a></li>
+          <li><a href="#">Delete Recipe</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      {{recipeItem.desc}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let ingredient of recipeItem.ingredients">
+          {{ingredient.name}} ({{ingredient.amount}})
+        </li>
       </ul>
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-xs-12">
-    {{recipeItem.desc}}
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    {{recipeItem.name}}
-  </div>
-</div>
+<ng-template #default>
+  <p>Please, Select Recipe</p>
+</ng-template>
+
