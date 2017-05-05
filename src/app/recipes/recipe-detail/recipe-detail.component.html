@@ -1,4 +1,4 @@
-<div *ngIf="selectedRecipe; else default">
+<div>
   <div class="row">
     <div class="col-xs-12">
       <img [src]="selectedRecipe.image" alt="{{ selectedRecipe.name }}" class="img-responsive" style="max-height: 250px">
@@ -18,9 +18,9 @@
           Manage Recipe <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-          <li (click)="toShoppingList(selectedRecipe.ingredients)"><a href="#">To Shopping List</a></li>
-          <li><a href="#">Edit Recipe</a></li>
-          <li><a href="#">Delete Recipe</a></li>
+          <li (click)="toShoppingList(selectedRecipe.ingredients)"><a style="cursor: pointer">To Shopping List</a></li>
+          <li><a style="cursor: pointer" (click)="editRecipe()">Edit Recipe</a></li>
+          <li><a style="cursor: pointer">Delete Recipe</a></li>
         </ul>
       </div>
     </div>
@@ -40,7 +40,4 @@
     </div>
   </div>
 </div>
-<ng-template #default>
-  <p>Please, Select Recipe</p>
-</ng-template>
 
