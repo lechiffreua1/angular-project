@@ -5,7 +5,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { EmptyRecipeDetailComponent } from './recipes/empty-recipe-detail/empty-recipe-detail.component';
-import {RecipeEditComponent} from "./recipes/recipe-edit/recipe-edit.component";
+import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
 
 const routes: Routes = [
   {
