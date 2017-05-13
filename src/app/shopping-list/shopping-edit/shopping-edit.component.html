@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <form (submit)="submitForm(nameInput.value, amountInput.value)" name="shoppingItemForm">
+    <form (ngSubmit)="onSubmit(shoppingItemForm)" #shoppingItemForm="ngForm">
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="name">Name</label>
@@ -8,8 +8,12 @@
                  id="name"
                  name="name"
                  class="form-control"
-                 #nameInput
-                 autocomplete="off">
+                 ngModel
+                 autocomplete="off"
+                 required
+                 #name="ngModel">
+          <span class="error"
+                *ngIf="!name.valid && name.touched">Name is required!</span>
         </div>
         <div class="col-sm-2 form-group">
           <label for="amount">Amount</label>
@@ -17,15 +21,40 @@
                  id="amount"
                  name="amount"
                  class="form-control"
-                 #amountInput
-                 autocomplete="off">
+                 ngModel
+                 autocomplete="off"
+                 required
+                 pattern="^[1-9]+[0-9]*$"
+                 #amount="ngModel">
+          <span class="error"
+                *ngIf="!amount.valid && amount.touched">
+            <span *ngIf="amount.errors.required">
+              Amount is required!
+            </span>
+            <span *ngIf="amount.errors.pattern">
+              Amount is invalid!
+            </span>
+          </span>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button class="btn btn-success" type="submit">Add</button>
+          <button
+            class="btn btn-success"
+            type="submit"
+            *ngIf="!editMode"
+            [disabled]="!shoppingItemForm.valid">Add</button>
+          <button
+            class="btn btn-success"
+            type="button"
+            *ngIf="editMode"
+            (click)="saveIngredientChanges()"
+            [disabled]="!shoppingItemForm.valid">Save</button>
           <button class="btn btn-danger" type="button" (click)="deleteShoppingItem()">Delete</button>
-          <button class="btn btn-primary" type="reset">Clear</button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="clearForm()">Clear</button>
         </div>
       </div>
     </form>

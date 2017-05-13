@@ -14,6 +14,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   selectedId: number;
   private addIngredientSubscr: Subscription;
   private deleteIngredientSubscr: Subscription;
+  private saveSelectedIngredientSuscr: Subscription;
 
   constructor(private shoppingListService: ShoppingListService) {
   }
@@ -28,7 +29,12 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.deleteIngredientSubscr = this.shoppingListService.deleteIngredient.subscribe(() => {
       this.ingredients.splice(this.selectedId, 1);
       delete this.selectedId;
-    })
+    });
+
+    this.saveSelectedIngredientSuscr = this.shoppingListService.saveSelectedIngredient
+      .subscribe(() => {
+        this.selectedId = null;
+      });
   }
 
   ngOnDestroy() {
@@ -38,6 +44,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   selectIngredient(id: number) {
     this.selectedId = id;
+    this.shoppingListService.onSelectIngredient(id);
   }
 
 }
