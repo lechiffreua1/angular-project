@@ -49,8 +49,12 @@
             type="button"
             *ngIf="editMode"
             (click)="saveIngredientChanges()"
-            [disabled]="!shoppingItemForm.valid">Save</button>
-          <button class="btn btn-danger" type="button" (click)="deleteShoppingItem()">Delete</button>
+            [disabled]="!shoppingItemForm.valid">Update</button>
+          <button
+            class="btn btn-danger"
+            type="button"
+            *ngIf="editMode"
+            (click)="deleteShoppingItem()">Delete</button>
           <button
             class="btn btn-primary"
             type="button"

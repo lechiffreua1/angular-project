@@ -8,8 +8,8 @@ export class ShoppingListService {
     new Ingredient('Tomatoes', 10)
   ];
 
-  addIngredient = new Subject<Ingredient>();
-  deleteIngredient = new Subject<void>();
+  addIngredient = new Subject<Ingredient[]>();
+  deleteIngredient = new Subject<Ingredient[]>();
   selectIngredient = new Subject<number>();
   saveSelectedIngredient = new Subject<void>();
 
@@ -19,11 +19,12 @@ export class ShoppingListService {
 
   addNewIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
-    this.addIngredient.next(ingredient);
+    this.addIngredient.next(this.ingredients.slice());
   }
 
-  deleteSelectedIngredient() {
-    this.deleteIngredient.next();
+  deleteSelectedIngredient(id: number) {
+    this.ingredients.splice(id, 1);
+    this.deleteIngredient.next(this.ingredients);
   }
 
   saveSelectedIngredientChanges(ingredient: Ingredient, id: number) {
