@@ -1,7 +1,12 @@
-import { Recipe } from '../recipes/recipe.model';
-import { Ingredient } from '../shared/ingredient.model';
+import {Http, Response} from "@angular/http";
+
 import {Subject} from "rxjs";
 
+import { Recipe } from '../recipes/recipe.model';
+import { Ingredient } from '../shared/ingredient.model';
+import {Injectable} from "@angular/core";
+
+@Injectable()
 export class RecipeService {
 
   private recipes: Recipe[] = [
@@ -15,6 +20,8 @@ export class RecipeService {
               [new Ingredient('Milk', 2), new Ingredient('Carrot', 3)]
               )
   ];
+
+  constructor(private http: Http) {}
 
   updateRecipeListSubject = new Subject<Recipe[]>();
 
@@ -39,5 +46,36 @@ export class RecipeService {
   deleteRecipe(index: number) {
     this.recipes.splice(index, 1);
     this.updateRecipeListSubject.next(this.recipes.slice());
+  }
+
+  saveRecipes() {
+    this.http.put('https://recipe-book-186d7.firebaseio.com/recipes.json', this.recipes)
+      .subscribe(
+        (response: Response) => {
+          console.log(response.json());
+        }
+      );
+  }
+
+  getRecipesFromFireBase() {
+    return this.http.get('https://recipe-book-186d7.firebaseio.com/recipes.json')
+      .map(
+        (response: Response) => {
+          const recipes = response.json();
+          for (let recipe of recipes) {
+            if (!recipe['ingredients']) {
+              recipe['ingredients'] = [];
+            }
+          }
+
+          return recipes;
+        }
+      )
+      .subscribe(
+        (recipes: Recipe[]) => {
+          this.recipes = recipes;
+          this.updateRecipeListSubject.next(this.recipes.slice());
+        }
+      );
   }
 }
