@@ -6,6 +6,8 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { EmptyRecipeDetailComponent } from './recipes/empty-recipe-detail/empty-recipe-detail.component';
 import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
+import {SignupComponent} from "./auth/signup/signup.component";
+import {SigninComponent} from "./auth/signin/signin.component";
 
 const routes: Routes = [
   {
@@ -29,6 +31,14 @@ const routes: Routes = [
         component: RecipeEditComponent
       }
     ]
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
+  },
+  {
+    path: 'signin',
+    component: SigninComponent
   },
   {
     path: 'shopping-list',
