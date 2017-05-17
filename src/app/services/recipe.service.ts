@@ -5,6 +5,7 @@ import {Subject} from "rxjs";
 import { Recipe } from '../recipes/recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 import {Injectable} from "@angular/core";
+import {AuthService} from "../auth/auth.service";
 
 @Injectable()
 export class RecipeService {
@@ -21,7 +22,8 @@ export class RecipeService {
               )
   ];
 
-  constructor(private http: Http) {}
+  constructor(private http: Http,
+              private authService: AuthService) {}
 
   updateRecipeListSubject = new Subject<Recipe[]>();
 
@@ -49,16 +51,20 @@ export class RecipeService {
   }
 
   saveRecipes() {
-    this.http.put('https://recipe-book-186d7.firebaseio.com/recipes.json', this.recipes)
+    const token = this.authService.getToken();
+
+    this.http.put('https://recipe-book-186d7.firebaseio.com/recipes.json?auth=' + token, this.recipes)
       .subscribe(
         (response: Response) => {
-          console.log(response.json());
+          // console.log(response.json());
         }
       );
   }
 
   getRecipesFromFireBase() {
-    return this.http.get('https://recipe-book-186d7.firebaseio.com/recipes.json')
+    const token = this.authService.getToken();
+
+    return this.http.get('https://recipe-book-186d7.firebaseio.com/recipes.json?auth=' + token)
       .map(
         (response: Response) => {
           const recipes = response.json();

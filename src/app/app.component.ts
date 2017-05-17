@@ -4,12 +4,13 @@ import * as firebase from 'firebase'
 
 import { RecipeService } from './services/recipe.service';
 import { ShoppingListService } from './services/shopping-list.service';
+import {AuthService} from "./auth/auth.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [RecipeService, ShoppingListService]
+  providers: [RecipeService, ShoppingListService, AuthService]
 })
 export class AppComponent implements OnInit {
 
