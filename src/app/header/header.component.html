@@ -9,13 +9,21 @@
         <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li routerLinkActive="active">
-          <a routerLink="/signin">Sign In</a>
+        <ng-template [ngIf]="!authService.isAuthenticated()">
+          <li routerLinkActive="active">
+            <a routerLink="/signin">Sign In</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/signup">Register</a>
+          </li>
+        </ng-template>
+        <li>
+          <a
+            style="cursor: pointer"
+            (click)="onSignOut()"
+            *ngIf="authService.isAuthenticated()">Log Out</a>
         </li>
-        <li routerLinkActive="active">
-          <a routerLink="/signup">Register</a>
-        </li>
-        <li class="dropdown">
+        <li class="dropdown" *ngIf="authService.isAuthenticated()">
           <a style="cursor: pointer"
              class="dropdown-toggle"
              data-toggle="dropdown"

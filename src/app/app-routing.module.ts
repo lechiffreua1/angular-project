@@ -8,6 +8,7 @@ import { EmptyRecipeDetailComponent } from './recipes/empty-recipe-detail/empty-
 import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
 import {SignupComponent} from "./auth/signup/signup.component";
 import {SigninComponent} from "./auth/signin/signin.component";
+import {AuthGuard} from "./auth/auth-guard.service";
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
       },
       {
         path: 'new',
-        component: RecipeEditComponent
+        component: RecipeEditComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: ':id',
@@ -28,7 +30,8 @@ const routes: Routes = [
       },
       {
         path: ':id/edit',
-        component: RecipeEditComponent
+        component: RecipeEditComponent,
+        canActivate: [AuthGuard]
       }
     ]
   },

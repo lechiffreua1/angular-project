@@ -2,15 +2,10 @@ import {Component, OnInit} from '@angular/core';
 
 import * as firebase from 'firebase'
 
-import { RecipeService } from './services/recipe.service';
-import { ShoppingListService } from './services/shopping-list.service';
-import {AuthService} from "./auth/auth.service";
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [RecipeService, ShoppingListService, AuthService]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
 

@@ -1,5 +1,7 @@
 import { Component} from '@angular/core';
 import {RecipeService} from "../services/recipe.service";
+import {AuthService} from "../auth/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -9,7 +11,9 @@ import {RecipeService} from "../services/recipe.service";
 
 export class HeaderComponent {
 
-  constructor(private recipeService: RecipeService) {
+  constructor(private recipeService: RecipeService,
+              private authService: AuthService,
+              private router: Router) {
 
   }
 
@@ -19,6 +23,10 @@ export class HeaderComponent {
 
   onFetchData() {
     this.recipeService.getRecipesFromFireBase();
+  }
+
+  onSignOut() {
+    this.authService.signOut();
   }
 
 }
