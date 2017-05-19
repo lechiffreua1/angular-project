@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
-import {RecipeService} from "../services/recipe.service";
-import {AuthService} from "../auth/auth.service";
+import {RecipeService} from "../../services/recipe.service";
+import {AuthService} from "../../auth/auth.service";
 import {Router} from "@angular/router";
 
 @Component({
