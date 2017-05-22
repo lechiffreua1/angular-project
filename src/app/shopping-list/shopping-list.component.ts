@@ -11,32 +11,40 @@ import {trigger, transition, animate, style, keyframes} from "@angular/animation
   styleUrls: ['./shopping-list.component.css'],
   animations: [
     trigger('shoppingList', [
-      transition('void => *', animate(800, keyframes([
+      transition('void => *', animate(500, keyframes([
         style({
-          opacity: 0
+          opacity: 0,
+          transform: 'translateX(-75px)'
         }),
         style({
-          opacity: 0.4
+          opacity: 0.4,
+          transform: 'translateX(-50px)'
         }),
         style({
-          opacity: 0.8
+          opacity: 0.8,
+          transform: 'translateX(-25px)'
         }),
         style({
-          opacity: 1
+          opacity: 1,
+          transform: 'translateX(0px)'
         })
       ]))),
-      transition('* => void', animate(800, keyframes([
+      transition('* => void', animate(500, keyframes([
         style({
-          opacity: 1
+          opacity: 1,
+          transform: 'translateX(0px)'
         }),
         style({
-          opacity: 0.8
+          opacity: 0.8,
+          transform: 'translateX(25px)'
         }),
         style({
-          opacity: 0.4
+          opacity: 0.4,
+          transform: 'translateX(50px)'
         }),
         style({
-          opacity: 0
+          opacity: 0,
+          transform: 'translateX(75px)'
         })
       ])))
     ])
