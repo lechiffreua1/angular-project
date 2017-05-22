@@ -56,7 +56,6 @@ export class RecipeService {
     this.http.put('https://recipe-book-186d7.firebaseio.com/recipes.json?auth=' + token, this.recipes)
       .subscribe(
         (response: Response) => {
-          // console.log(response.json());
         }
       );
   }
